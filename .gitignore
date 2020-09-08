@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+#customized
+log.txt
+# to stop stracking tlg.constants.py:  git update-index --skip-worktree tlg_constants.py
