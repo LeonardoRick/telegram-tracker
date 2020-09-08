@@ -1,0 +1,13 @@
+[flake8]
+ignore = E302, F403, F405, W503
+max-line-length = 160
+max-complexity = 10
+
+
+; E302: Expected 2 blank lines, found 0
+; F405: Allows star (asterístco) imports
+; F405: Allows star (asterístco) imports
+; W503: To allow line break before a binary operator:
+    ;  income = (gross_wages
+    ;   + taxable_interest)
+; obs: W503 and W504 are mutual exclusive, so you should abvoid one of them
