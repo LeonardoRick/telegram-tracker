@@ -28,6 +28,4 @@ sys.stdout = Logger(Path(__file__).parent.absolute())
 tlg.login()  # connect to Telegram
 tlg.add_message_handler(tlgMsgHandler)
 
-
-while True:
-    pass
+tlg.idle()
