@@ -131,4 +131,5 @@ dmypy.json
 
 #customized
 log.txt
+tlgdb/*
 # to stop stracking tlg.constants.py:  git update-index --skip-worktree tlg_constants.py

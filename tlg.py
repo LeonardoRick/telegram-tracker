@@ -1,31 +1,35 @@
 import sys
-from telegram.client import Telegram
-from iqlogger import Logger
+import asyncio
 from pathlib import Path
-import tlg_constants
+from telethon import TelegramClient, events
+from iqlogger import Logger
+from tlg_constants import TelegramConstants
 
-# CLASS just to test telegram
-def tlgMsgHandler(update):
-    # we want to process only text messages
+# your main work, never block this thread
+async def main():
+    i = 0
+    while True:
+        i += 1
+        await asyncio.sleep(1)
 
-    message_content = update['message']['content'].get('text', {})
-    msg = message_content.get('text', '')
-    chat_id = str(update['message']['chat_id'])
-    print(f'chat Id: : {chat_id}\nmessage: {msg}')
-
-
-constants = tlg_constants.TelegramConstants()
-
-tlg: Telegram = Telegram(
-    api_id=constants.api_id,
-    api_hash=constants.api_hash,
-    phone=constants.phone,
-    database_encryption_key=constants.api_hash
-)
-
+c = TelegramConstants()
 sys.stdout = Logger(Path(__file__).parent.absolute())
+tlgSessionPath = Path.joinpath(Path(__file__).parent.absolute(), 'tlgdb', 'leo')
 
-tlg.login()  # connect to Telegram
-tlg.add_message_handler(tlgMsgHandler)
+tlg = TelegramClient(
+    session=str(tlgSessionPath),
+    api_id=c.api_id,
+    api_hash=c.api_hash,
+)
+tlg.start('+5511993774025')
 
-tlg.idle()
+@tlg.on(events.NewMessage)
+async def my_handler(update):
+    # chat = await update.get_chat()
+    # sender = await update.get_sender()
+    print(update.chat_id)
+    print(update.raw_text)
+
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())

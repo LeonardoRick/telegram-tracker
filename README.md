@@ -9,3 +9,4 @@ https://my.telegram.org/auth
 
 3) run python tlg.py. Your log will be saved on log.txt
 
+Keep in mind that each time you run, log.txt will be re-writed and that is the expected behavior. If you want to change that, change iqlogger.py option on openning
