@@ -60,9 +60,8 @@ async def delete_handler(update):
 
 
 try:
-    phone = '+'
-    print(f'escutando para o número: {phone}')
-    tlg.start(phone)
+    print(f'escutando para o número: {c.phone}')
+    tlg.start(c.phone)
     asyncio.get_event_loop().run_until_complete(main())
 except KeyboardInterrupt:
     print('\nEvent removed and program finished.')
